@@ -281,50 +281,69 @@ def simular_cancelamentos(df_clientes, df_contratos, df_faturamento, df_atendime
     # 4. Falhas de rede crônicas
     quedas_por_cli = df_rede.groupby("id_cliente")["duracao_queda_minutos"].sum().to_dict()
     
+    # Pré-indexar eventos por data para simulação dinâmica mês a mês
+    df_ate_dt = df_atendimento.copy()
+    df_ate_dt["data_abertura"] = pd.to_datetime(df_ate_dt["data_abertura"])
+    
+    df_red_dt = df_rede.copy()
+    df_red_dt["data_evento"] = pd.to_datetime(df_red_dt["data_evento"])
+    
+    df_fat_dt = df_faturamento.copy()
+    df_fat_dt["data_vencimento"] = pd.to_datetime(df_fat_dt["data_vencimento"])
+
     cancelamentos = []
     canc_id = 1
     
-    # Calibraremos para gerar ~2,8% ao mês
-    # Para o período de referência (especialmente maio e junho de 2024)
-    # Vamos gerar cancelamentos distribuídos ao longo do ano
+    # Avaliaremos mês a mês quem cancela
+    meses_simulacao = [
+        ("2024-01", datetime(2024, 1, 1)),
+        ("2024-02", datetime(2024, 2, 1)),
+        ("2024-03", datetime(2024, 3, 1)),
+        ("2024-04", datetime(2024, 4, 1)),
+        ("2024-05", datetime(2024, 5, 1)),
+        ("2024-06", datetime(2024, 6, 1))
+    ]
     
-    for _, cli in df_clientes.iterrows():
-        cid = cli["id_cliente"]
-        tempo_meses = cli["tempo_relacionamento_meses"]
+    clientes_ativos = set(df_clientes["id_cliente"])
+    
+    for mes_str, dt_mes_inicio in meses_simulacao:
+        dt_60d_antes = dt_mes_inicio - timedelta(days=60)
         
-        score_risco = 0.015  # Risco base (~1.5%)
+        # Mapeia clientes com fricção nos 60 dias anteriores a este mês
+        chamados_mes = set(df_ate_dt[(df_ate_dt["data_abertura"] >= dt_60d_antes) & (df_ate_dt["data_abertura"] < dt_mes_inicio)]["id_cliente"])
+        quedas_mes = set(df_red_dt[(df_red_dt["data_evento"] >= dt_60d_antes) & (df_red_dt["data_evento"] < dt_mes_inicio) & (df_red_dt["duracao_queda_minutos"] > 120)]["id_cliente"])
+        atrasos_mes = set(df_fat_dt[(df_fat_dt["data_vencimento"] >= dt_60d_antes) & (df_fat_dt["data_vencimento"] < dt_mes_inicio) & (df_fat_dt["dias_atraso"] > 10)]["id_cliente"])
         
-        if cid in sem_fidelidade:
-            score_risco += 0.035
-        if cid in inadimplentes:
-            score_risco += 0.040
-        n_cham = chamados_por_cli.get(cid, 0)
-        if n_cham >= 3:
-            score_risco += 0.045
-        elif n_cham >= 1:
-            score_risco += 0.015
-        
-        duracao_queda = quedas_por_cli.get(cid, 0)
-        if duracao_queda > 240:
-            score_risco += 0.030
+        churns_neste_mes = []
+        for cid in list(clientes_ativos):
+            # Risco base de cancelamento espontâneo (~0.6% ao mês)
+            prob_churn = 0.006
             
-        if tempo_meses < 6:
-            score_risco += 0.025
-        elif tempo_meses > 24:
-            score_risco -= 0.010
+            tem_fidelidade = (cid not in sem_fidelidade)
             
-        score_risco = max(0.005, min(0.35, score_risco))
-        
-        # Sorteia se o cliente cancelou em algum mês
-        # Probabilidade mensal ~ score_risco
-        for mes_idx, mes_str in enumerate(["2024-01", "2024-02", "2024-03", "2024-04", "2024-05", "2024-06"]):
-            if np.random.rand() < score_risco:
-                # Cliente cancelou neste mês
+            # Fricções recentes operacionais
+            friccao = 0
+            if cid in chamados_mes:
+                friccao += 0.045
+            if cid in quedas_mes:
+                friccao += 0.035
+            if cid in atrasos_mes:
+                friccao += 0.040
+                
+            # Sem fidelidade potencializa grandemente a evasão
+            if not tem_fidelidade:
+                prob_churn += 0.025 + friccao * 1.8
+            else:
+                prob_churn += friccao * 0.4
+                
+            prob_churn = min(0.35, prob_churn)
+            
+            if np.random.rand() < prob_churn:
                 dia = np.random.randint(1, 28)
                 dt_canc = datetime.strptime(f"{mes_str}-{dia:02d}", "%Y-%m-%d")
                 
                 motivos_canc = ["Preço elevado / Concorrência", "Instabilidade na Conexão", "Mau Atendimento", "Mudança de Endereço"]
-                tipo = "Involuntário por inadimplência" if (cid in inadimplentes and np.random.rand() < 0.6) else "Voluntário"
+                tipo = "Involuntário por inadimplência" if (cid in atrasos_mes and np.random.rand() < 0.6) else "Voluntário"
                 
                 cancelamentos.append({
                     "id_cancelamento": f"CNC_{canc_id:06d}",
@@ -334,8 +353,12 @@ def simular_cancelamentos(df_clientes, df_contratos, df_faturamento, df_atendime
                     "motivo_declarado": np.random.choice(motivos_canc) if tipo == "Voluntário" else "Inadimplência prolongada"
                 })
                 canc_id += 1
-                break  # Cancela apenas uma vez
+                churns_neste_mes.append(cid)
                 
+        # Remove do conjunto de ativos
+        for cid in churns_neste_mes:
+            clientes_ativos.remove(cid)
+            
     df_cancelamentos = pd.DataFrame(cancelamentos)
     return df_cancelamentos
 

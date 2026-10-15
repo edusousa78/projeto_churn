@@ -2,7 +2,7 @@
 **Projeto:** Customer Churn Prediction & Retention Intelligence  
 **Empresa:** Conecta Brasil Telecom  
 **Base Analisada:** Safra de Treinamento Point-in-Time (17.330 clientes elegíveis)  
-**Taxa Média de Churn Observada:** 3.97%  
+**Taxa Média de Churn Observada:** 1.60%  
 
 ---
 
@@ -11,30 +11,30 @@
 ### Hipótese 1: Clientes sem fidelidade contratual apresentam risco desproporcionalmente maior
 - **Resultado:** **CONFIRMADA.**
 - **Evidência Quantitativa:**
-  - Churn em contratos sem fidelidade: **7.03%**
-  - Churn em contratos com fidelidade (12 ou 24 meses): **3.10%**
-  - **Lift de Risco:** Clientes sem fidelidade têm **2.3x mais chance de cancelar** no mês subsequente.
+  - Churn em contratos sem fidelidade: **4.13%**
+  - Churn em contratos com fidelidade (12 ou 24 meses): **0.86%**
+  - **Lift de Risco:** Clientes sem fidelidade têm **4.8x mais chance de cancelar** no mês subsequente.
 
 ### Hipótese 2: Inadimplência recente e atrasos frequentes antecipam o desligamento
 - **Resultado:** **CONFIRMADA.**
 - **Evidência Quantitativa:**
-  - Churn entre clientes com atraso severo recente (>15 dias): **7.07%**
-  - Churn entre clientes adimplentes: **3.81%**
-  - **Lift de Risco:** Clientes com fricção de faturamento apresentam **1.9x maior propensão ao cancelamento**.
+  - Churn entre clientes com atraso severo recente (>15 dias): **3.09%**
+  - Churn entre clientes adimplentes: **1.51%**
+  - **Lift de Risco:** Clientes com fricção de faturamento apresentam **2.0x maior propensão ao cancelamento**.
 
 ### Hipótese 3: Volume elevado de chamados ao suporte técnico sinaliza atrito irreversível
 - **Resultado:** **CONFIRMADA.**
 - **Evidência Quantitativa:**
-  - Churn para clientes com 3 ou mais chamados nos últimos 60 dias: **8.89%**
-  - Churn para clientes sem nenhum chamado: **3.72%**
-  - **Lift de Risco:** Clientes que abriram 3+ chamados têm **2.4x maior taxa de saída**.
+  - Churn para clientes com 3 ou mais chamados nos últimos 60 dias: **6.06%**
+  - Churn para clientes sem nenhum chamado: **1.36%**
+  - **Lift de Risco:** Clientes que abriram 3+ chamados têm **4.4x maior taxa de saída**.
 
 ### Hipótese 4: Instabilidade severa de rede e perda de pacotes aceleram a evasão
 - **Resultado:** **CONFIRMADA.**
 - **Evidência Quantitativa:**
-  - Churn para clientes com instabilidade crítica de rede (>180 min de queda ou >5% perda de pacotes): **5.32%**
-  - Churn para clientes com conexão estável: **3.90%**
-  - **Lift de Risco:** Instabilidade técnica eleva a probabilidade de cancelamento em **1.4x**.
+  - Churn para clientes com instabilidade crítica de rede (>180 min de queda ou >5% perda de pacotes): **2.49%**
+  - Churn para clientes com conexão estável: **1.55%**
+  - **Lift de Risco:** Instabilidade técnica eleva a probabilidade de cancelamento em **1.6x**.
 
 ---
 
