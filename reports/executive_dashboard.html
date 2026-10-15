@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta Brasil Telecom — Painel Executivo de Inteligência de Retenção</title>
+    <title>Conecta Brasil Telecom — Painel Executivo Dinâmico de Retenção</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -45,7 +45,7 @@
         }
 
         .container {
-            max-width: 1440px;
+            max-width: 1480px;
             margin: 0 auto;
             padding: 32px 24px;
         }
@@ -55,9 +55,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border-card);
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
         .logo-group h1 {
@@ -76,6 +78,13 @@
             margin-top: 4px;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .badge-live {
             display: inline-flex;
             align-items: center;
@@ -83,7 +92,7 @@
             background: rgba(16, 185, 129, 0.12);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: #34d399;
-            padding: 6px 14px;
+            padding: 7px 14px;
             border-radius: 9999px;
             font-size: 13px;
             font-weight: 600;
@@ -104,10 +113,124 @@
             50% { opacity: 0.5; transform: scale(1.2); }
         }
 
+        /* Barra de Fonte de Dados e Upload Dinâmico */
+        .datasource-bar {
+            background: rgba(22, 30, 49, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .datasource-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .datasource-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(99, 102, 241, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .datasource-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .datasource-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .datasource-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4f46e5, #4338ca);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-main);
+            border: 1px solid var(--border-card);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Toast de Notificação */
+        #toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e293b;
+            color: #ffffff;
+            border: 1px solid #334155;
+            padding: 14px 22px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
         /* KPI Cards Grid */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
             margin-bottom: 32px;
         }
@@ -200,6 +323,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .panel-header h2 {
@@ -276,11 +401,50 @@
         .roi-res-val.green { color: #10b981; }
         .roi-res-val.blue { color: #38bdf8; }
         .roi-res-val.purple { color: #a855f7; }
+        .roi-res-val.red { color: #ef4444; }
+
+        /* Controles de Filtro da Tabela */
+        .table-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 240px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: rgba(10, 15, 29, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-primary);
+        }
+
+        select.filter-select {
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #131a2b;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+        }
 
         /* Tabela Priorizada */
         .table-container {
             overflow-x: auto;
-            max-height: 480px;
+            max-height: 520px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         table {
@@ -299,6 +463,13 @@
             color: var(--text-muted);
             border-bottom: 1px solid var(--border-card);
             z-index: 10;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        thead th:hover {
+            color: #ffffff;
+            background: #1b253d;
         }
 
         tbody td {
@@ -324,20 +495,40 @@
         .tier-medio { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
         .tier-baixo { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
 
-        .search-box {
-            width: 100%;
-            padding: 10px 14px;
-            border-radius: 10px;
-            background: rgba(10, 15, 29, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #ffffff;
+        /* Paginação */
+        .pagination-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 13px;
-            margin-bottom: 14px;
-            outline: none;
+            color: var(--text-muted);
         }
 
-        .search-box:focus {
-            border-color: var(--accent-primary);
+        .pagination-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-page {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-card);
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .btn-page:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .btn-page:not(:disabled):hover {
+            background: var(--accent-primary);
         }
 
         footer {
@@ -350,49 +541,74 @@
 </head>
 <body>
 
+<div id="toast">✅ Notificação</div>
+
 <div class="container">
     <!-- Header -->
     <header>
         <div class="logo-group">
             <h1>CONECTA BRASIL TELECOM</h1>
-            <p>Customer Churn Prediction & Retention Intelligence · Sprint 4 Produto Analítico</p>
+            <p>Customer Churn Prediction & Retention Intelligence · Painel Dinâmico de Retenção</p>
         </div>
-        <div>
-            <span class="badge-live">Modelo Homologado em Produção</span>
+        <div class="header-actions">
+            <span class="badge-live">Modelo Homologado (OOT Validado)</span>
         </div>
     </header>
 
-    <!-- KPI Grid -->
+    <!-- Barra de Controle de Dados (100% Dinâmico) -->
+    <div class="datasource-bar">
+        <div class="datasource-info">
+            <div class="datasource-icon">📊</div>
+            <div>
+                <div class="datasource-title" id="sourceTitle">Base Ativa: Inferência Modelo Campeão</div>
+                <div class="datasource-desc" id="sourceDesc">Arquivo carregado: <code>lista_priorizada_retencao.csv</code> (20,237 clientes avaliados)</div>
+            </div>
+        </div>
+        <div class="datasource-controls">
+            <input type="file" id="fileInput" accept=".csv" style="display: none;">
+            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                📁 Carregar Novo CSV de Previsões
+            </button>
+            <button class="btn btn-secondary" onclick="restaurarBasePadrao()">
+                🔄 Restaurar Base Padrão
+            </button>
+            <button class="btn btn-secondary" onclick="exportarCSVFiltrado()">
+                📥 Exportar Filtrados (.CSV)
+            </button>
+        </div>
+    </div>
+
+    <!-- KPI Grid (Valores Atualizados Dinamicamente via JS) -->
     <div class="kpi-grid">
         <div class="kpi-card">
-            <div class="kpi-title">Base Ativa</div>
-            <div class="kpi-value">500.000</div>
-            <div class="kpi-sub">Assinantes Ativos Monitorados</div>
+            <div class="kpi-title">Clientes Avaliados</div>
+            <div class="kpi-value" id="kpiTotalClientes">20,237</div>
+            <div class="kpi-sub" id="kpiTotalClientesSub">Snapshot Operacional Ativo</div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-title">Taxa Atual de Churn</div>
-            <div class="kpi-value">2,80%</div>
-            <div class="kpi-sub" style="color: #f87171;">~14.000 cancelamentos/mês</div>
+            <div class="kpi-title">Churn Médio Global</div>
+            <div class="kpi-value" id="kpiChurnMedio">39.94%</div>
+            <div class="kpi-sub" style="color: #f87171;">Taxa Média de Evasão Prevista</div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-title">Meta Estratégica (CTO)</div>
-            <div class="kpi-value">2,50%</div>
-            <div class="kpi-sub highlight">-1.500 churns/mês preservados</div>
+            <div class="kpi-title">Decil 1 (Top 10%)</div>
+            <div class="kpi-value" id="kpiDecil1Qtd">2.024</div>
+            <div class="kpi-sub highlight">Clientes de Maior Risco</div>
         </div>
         <div class="kpi-card">
-            <div class="kpi-title">Lift @ Top 10%</div>
-            <div class="kpi-value">3,06x</div>
-            <div class="kpi-sub highlight">vs. Abordagem Aleatória</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">Captura de Risco (Decil 1)</div>
-            <div class="kpi-value">30,6%</div>
-            <div class="kpi-sub">De todo o churn concentrado no Top 10%</div>
+            <div class="kpi-title">Prob. Média Decil 1</div>
+            <div class="kpi-value" id="kpiProbDecil1">77.8%</div>
+            <div class="kpi-sub highlight">Concentração Máxima de Churn</div>
         </div>
         <div class="kpi-card">
             <div class="kpi-title">Retorno Médio / Contato</div>
-            <div class="kpi-value">R$ 59,49</div>
+            <div class="kpi-value" id="kpiRetornoDecil1">R$ 59.49</div>
             <div class="kpi-sub highlight">Margem líquida esperada no Decil 1</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-title">Lift @ Top 10%</div>
+            <div class="kpi-value" id="kpiLift">3,06x</div>
+            <div class="kpi-sub highlight">vs. Abordagem Aleatória</div>
         </div>
     </div>
 
@@ -402,7 +618,7 @@
         <div class="panel-card">
             <div class="panel-header">
                 <h2>Distribuição de Risco e Retorno por Decil</h2>
-                <span>Ordenação Decrescente de Risco</span>
+                <span id="chartSub">Atualizado dinamicamente com base no dataset</span>
             </div>
             <div style="height: 320px;">
                 <canvas id="chartDecis"></canvas>
@@ -470,104 +686,297 @@
     <!-- Tabela Operacional de Clientes Priorizados -->
     <div class="panel-card">
         <div class="panel-header">
-            <h2>Fila Priorizada para a Gerência de Retenção (Top Oportunidades)</h2>
+            <h2>Fila Priorizada para a Gerência de Retenção</h2>
             <span>Saída Pseudonimizada (LGPD Compliant - ADR-002)</span>
         </div>
 
-        <input type="text" id="filtroTabela" class="search-box" placeholder="Buscar por ID Pseudonimizado, Região, Plano ou Ação Recomendada...">
+        <div class="table-controls">
+            <input type="text" id="filtroTexto" class="search-box" placeholder="Buscar por ID, Região, Plano ou Ação...">
+            
+            <select id="filtroFaixa" class="filter-select">
+                <option value="TODAS">Todas as Faixas de Risco</option>
+                <option value="Crítico">Crítico</option>
+                <option value="Alto">Alto</option>
+                <option value="Médio">Médio</option>
+                <option value="Baixo">Baixo</option>
+            </select>
+
+            <select id="filtroRegiao" class="filter-select">
+                <option value="TODAS">Todas as Regiões</option>
+                <option value="Sudeste">Sudeste</option>
+                <option value="Sul">Sul</option>
+                <option value="Nordeste">Nordeste</option>
+                <option value="Centro-Oeste">Centro-Oeste</option>
+                <option value="Norte">Norte</option>
+            </select>
+
+            <select id="itensPorPagina" class="filter-select">
+                <option value="15">15 por página</option>
+                <option value="30">30 por página</option>
+                <option value="50">50 por página</option>
+            </select>
+        </div>
 
         <div class="table-container">
             <table id="tabelaClientes">
                 <thead>
                     <tr>
-                        <th>ID Pseudonimizado</th>
-                        <th>Região</th>
-                        <th>Plano Contratado</th>
-                        <th>Fidelizado</th>
-                        <th>Fatura Média (3m)</th>
-                        <th>Chamados (60d)</th>
-                        <th>Queda Rede (min)</th>
-                        <th>Prob. Churn</th>
-                        <th>Decil</th>
-                        <th>Faixa</th>
-                        <th>Retorno Esperado (R$)</th>
+                        <th onclick="ordenarPor('id_cliente_hash')">ID Pseudonimizado ↕</th>
+                        <th onclick="ordenarPor('regiao')">Região ↕</th>
+                        <th onclick="ordenarPor('tipo_plano')">Plano ↕</th>
+                        <th onclick="ordenarPor('eh_fidelizado')">Fidelizado ↕</th>
+                        <th onclick="ordenarPor('media_valor_fatura_3m')">Fatura Média (3m) ↕</th>
+                        <th onclick="ordenarPor('total_chamados_60d')">Chamados (60d) ↕</th>
+                        <th onclick="ordenarPor('duracao_quedas_min_60d')">Quedas (min) ↕</th>
+                        <th onclick="ordenarPor('probabilidade_churn')">Prob. Churn ↕</th>
+                        <th onclick="ordenarPor('decil_risco')">Decil ↕</th>
+                        <th onclick="ordenarPor('faixa_risco')">Faixa ↕</th>
+                        <th onclick="ordenarPor('retorno_esperado_campanha_rs')">Retorno Esperado ↕</th>
                         <th>Ação Recomendada</th>
                     </tr>
                 </thead>
                 <tbody id="tbodyClientes">
-                    <!-- Gerado via JavaScript -->
+                    <!-- Gerado dinamicamente via JS -->
                 </tbody>
             </table>
+        </div>
+
+        <div class="pagination-bar">
+            <div id="infoPaginacao">Mostrando 1 - 15 de 250 clientes</div>
+            <div class="pagination-buttons">
+                <button class="btn-page" id="btnPagAnt" onclick="mudarPagina(-1)">Anterior</button>
+                <span id="numPagina" style="display:flex; align-items:center; padding:0 8px; font-weight:600;">1</span>
+                <button class="btn-page" id="btnPagProx" onclick="mudarPagina(1)">Próxima</button>
+            </div>
         </div>
     </div>
 
     <footer>
         <p>Conecta Brasil Telecom · Projeto 01 Customer Churn Prediction & Retention Intelligence</p>
-        <p>Pipeline de Ciência de Dados validado com pytest (100% aprovado) · Sem vazamento de dados pessoais (LGPD)</p>
+        <p>Painel 100% Dinâmico com suporte a Upload de Arquivos CSV locais via FileReader API</p>
     </footer>
 </div>
 
 <script>
-    // Dados injetados pelo pipeline
-    const decisLabels = ["Decil 1", "Decil 10", "Decil 2", "Decil 3", "Decil 4", "Decil 5", "Decil 6", "Decil 7", "Decil 8", "Decil 9"];
-    const decisProbs = [77.8, 18.4, 66.2, 55.2, 41.2, 34.4, 30.6, 27.8, 25.3, 22.5];
-    const decisRetornos = [59.49, -28.61, 41.05, 32.17, 4.99, -8.88, -15.68, -19.46, -22.76, -25.14];
-    const listaClientes = [{"id_cliente_hash": "bb43687ab1b3e4db", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.23, "total_chamados_60d": 1, "duracao_quedas_min_60d": 5, "probabilidade_churn": 0.9751, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 250.35, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d24636a09896e2eb", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 260.91, "total_chamados_60d": 0, "duracao_quedas_min_60d": 201, "probabilidade_churn": 0.9214, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 240.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "eb8c88086ba444ab", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 255.05, "total_chamados_60d": 2, "duracao_quedas_min_60d": 24, "probabilidade_churn": 0.9423, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 240.82, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d9ee1493c270ee00", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.67, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9401, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 236.11, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4eac252b9d0d8572", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.08, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9332, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 230.88, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "03446c23f10c2c51", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.9, "total_chamados_60d": 1, "duracao_quedas_min_60d": 18, "probabilidade_churn": 0.9043, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 226.16, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3b112b81ab6c86b2", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.26, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9093, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 225.87, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6a1e744387c74ff2", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.58, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8956, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 223.03, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a07f58ed785003b9", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.71, "total_chamados_60d": 0, "duracao_quedas_min_60d": 19, "probabilidade_churn": 0.8742, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 220.76, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c663d06f0d06bf2d", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.71, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8794, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 215.8, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a5b26574c34901de", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.42, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8525, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 215.58, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8d1849428e267795", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 252.21, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8717, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 215.01, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7f1bc16c89a2666c", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.43, "total_chamados_60d": 3, "duracao_quedas_min_60d": 78, "probabilidade_churn": 0.8882, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 214.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "dd3ed147a8338422", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.8, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8778, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 214.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d0bc2d6f722e6b85", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.56, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8628, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 212.57, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "bfec8f3b1b1cc0cb", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 242.83, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8965, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 212.3, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e5c33d5a4de59559", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.83, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8779, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 212.14, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3a83963f61eba7b6", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.96, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8681, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 211.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "59a3c6c5fb69ea19", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 255.99, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8465, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 211.04, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b65f709364f3748d", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 259.27, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8296, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 209.01, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "65a7ce996ff93374", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.06, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.859, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 208.65, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "00bd0aea61ae75f9", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 258.19, "total_chamados_60d": 0, "duracao_quedas_min_60d": 265, "probabilidade_churn": 0.8216, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 205.28, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "931e4cca7eb810c4", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.43, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.832, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 204.72, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ddd71215aba80380", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.43, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8411, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 203.4, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e254315e6fe7a647", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 257.59, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8143, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 202.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b611107ad303c948", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 255.35, "total_chamados_60d": 1, "duracao_quedas_min_60d": 143, "probabilidade_churn": 0.8213, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 202.25, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6dd64bd2cd6bbec2", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.83, "total_chamados_60d": 0, "duracao_quedas_min_60d": 21, "probabilidade_churn": 0.8278, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 201.71, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4ff1ec78f9b32b55", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.34, "total_chamados_60d": 0, "duracao_quedas_min_60d": 21, "probabilidade_churn": 0.8218, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 201.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5733467c7da64857", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.38, "total_chamados_60d": 0, "duracao_quedas_min_60d": 44, "probabilidade_churn": 0.8201, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 200.86, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a32985aefff04f90", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.99, "total_chamados_60d": 0, "duracao_quedas_min_60d": 95, "probabilidade_churn": 0.8137, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 199.43, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c967502b62a546b4", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.29, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8063, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 198.37, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "31fd4649a1ed2e64", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.21, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8185, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 198.11, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ce4ec1d2001472a0", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.08, "total_chamados_60d": 0, "duracao_quedas_min_60d": 6, "probabilidade_churn": 0.8249, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 197.93, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b82253d444955f24", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.67, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7945, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 196.95, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5441cfb092e079fa", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.99, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8058, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 195.88, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cff1b6974f0c7dd9", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.7, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8022, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 193.42, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "168c6523ad0eba29", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.43, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8127, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 190.34, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1d7d526abe7ad110", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.49, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8087, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 190.18, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a5b607706f7f7c62", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.83, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7873, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 189.8, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f38a51778bcff715", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.86, "total_chamados_60d": 0, "duracao_quedas_min_60d": 75, "probabilidade_churn": 0.8055, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 189.56, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3f6d9ad95bb57ecb", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.93, "total_chamados_60d": 0, "duracao_quedas_min_60d": 19, "probabilidade_churn": 0.7955, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 188.51, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e736f1c65e27dd1a", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.24, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7665, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 187.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b789148197f793f6", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.6, "total_chamados_60d": 0, "duracao_quedas_min_60d": 25, "probabilidade_churn": 0.7866, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 187.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a183526b0b189512", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.16, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8058, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1590a39fde592763", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 243.97, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8081, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "aa4b2a5df75308f6", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.98, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7885, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "621fe981521cd58b", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.8, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.792, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.28, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e8c1ac35eec4b818", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7782, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.08, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "9da5e974ad8e73b8", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.94, "total_chamados_60d": 0, "duracao_quedas_min_60d": 15, "probabilidade_churn": 0.7892, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 185.54, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d8ce9c1510228cdc", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.65, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7822, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 185.03, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "eda9340d5107e0ad", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.72, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7937, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 183.74, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "577e67f5c7a0e3b4", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.57, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7746, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 183.53, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "028d04cb77905aeb", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.14, "total_chamados_60d": 0, "duracao_quedas_min_60d": 63, "probabilidade_churn": 0.793, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.94, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a20f65831b1a092a", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.39, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7855, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.85, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3ae2e7f1b5968cfc", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.06, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7929, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.83, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "0f6335845ba7523e", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.09, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7737, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.78, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "fb3e54e1caa53b08", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 257.68, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7532, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.55, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d0f493cdbb83da38", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.775, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.13, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1a7fc83f1ba4f417", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.46, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7828, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.08, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7e34bb8bbd063a57", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.58, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7841, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 181.61, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}];
+    // Estado Padrão Embutido (Injetado via Python)
+    const DADOS_PADRAO = [{"id_cliente_hash": "bb43687ab1b3e4db", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.23, "total_chamados_60d": 1, "duracao_quedas_min_60d": 5, "probabilidade_churn": 0.9751, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 250.35, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d24636a09896e2eb", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 260.91, "total_chamados_60d": 0, "duracao_quedas_min_60d": 201, "probabilidade_churn": 0.9214, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 240.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "eb8c88086ba444ab", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 255.05, "total_chamados_60d": 2, "duracao_quedas_min_60d": 24, "probabilidade_churn": 0.9423, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 240.82, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d9ee1493c270ee00", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.67, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9401, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 236.11, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4eac252b9d0d8572", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.08, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9332, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 230.88, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "03446c23f10c2c51", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.9, "total_chamados_60d": 1, "duracao_quedas_min_60d": 18, "probabilidade_churn": 0.9043, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 226.16, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3b112b81ab6c86b2", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.26, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9093, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 225.87, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6a1e744387c74ff2", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.58, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8956, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 223.03, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a07f58ed785003b9", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.71, "total_chamados_60d": 0, "duracao_quedas_min_60d": 19, "probabilidade_churn": 0.8742, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 220.76, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c663d06f0d06bf2d", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.71, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8794, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 215.8, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a5b26574c34901de", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.42, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8525, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 215.58, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8d1849428e267795", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 252.21, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8717, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 215.01, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7f1bc16c89a2666c", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.43, "total_chamados_60d": 3, "duracao_quedas_min_60d": 78, "probabilidade_churn": 0.8882, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 214.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "dd3ed147a8338422", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.8, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8778, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 214.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d0bc2d6f722e6b85", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.56, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8628, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 212.57, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "bfec8f3b1b1cc0cb", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 242.83, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8965, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 212.3, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e5c33d5a4de59559", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.83, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8779, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 212.14, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3a83963f61eba7b6", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.96, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8681, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 211.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "59a3c6c5fb69ea19", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 255.99, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8465, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 211.04, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b65f709364f3748d", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 259.27, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8296, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 209.01, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "65a7ce996ff93374", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.06, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.859, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 208.65, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "00bd0aea61ae75f9", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 258.19, "total_chamados_60d": 0, "duracao_quedas_min_60d": 265, "probabilidade_churn": 0.8216, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 205.28, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "931e4cca7eb810c4", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.43, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.832, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 204.72, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ddd71215aba80380", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.43, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8411, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 203.4, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e254315e6fe7a647", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 257.59, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8143, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 202.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b611107ad303c948", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 255.35, "total_chamados_60d": 1, "duracao_quedas_min_60d": 143, "probabilidade_churn": 0.8213, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 202.25, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6dd64bd2cd6bbec2", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.83, "total_chamados_60d": 0, "duracao_quedas_min_60d": 21, "probabilidade_churn": 0.8278, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 201.71, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4ff1ec78f9b32b55", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.34, "total_chamados_60d": 0, "duracao_quedas_min_60d": 21, "probabilidade_churn": 0.8218, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 201.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5733467c7da64857", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.38, "total_chamados_60d": 0, "duracao_quedas_min_60d": 44, "probabilidade_churn": 0.8201, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 200.86, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a32985aefff04f90", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.99, "total_chamados_60d": 0, "duracao_quedas_min_60d": 95, "probabilidade_churn": 0.8137, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 199.43, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c967502b62a546b4", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.29, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8063, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 198.37, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "31fd4649a1ed2e64", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.21, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8185, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 198.11, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ce4ec1d2001472a0", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.08, "total_chamados_60d": 0, "duracao_quedas_min_60d": 6, "probabilidade_churn": 0.8249, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 197.93, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b82253d444955f24", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.67, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7945, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 196.95, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5441cfb092e079fa", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.99, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8058, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 195.88, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cff1b6974f0c7dd9", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.7, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8022, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 193.42, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "168c6523ad0eba29", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.43, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8127, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 190.34, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1d7d526abe7ad110", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.49, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8087, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 190.18, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a5b607706f7f7c62", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.83, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7873, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 189.8, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f38a51778bcff715", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.86, "total_chamados_60d": 0, "duracao_quedas_min_60d": 75, "probabilidade_churn": 0.8055, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 189.56, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3f6d9ad95bb57ecb", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.93, "total_chamados_60d": 0, "duracao_quedas_min_60d": 19, "probabilidade_churn": 0.7955, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 188.51, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e736f1c65e27dd1a", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.24, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7665, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 187.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b789148197f793f6", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.6, "total_chamados_60d": 0, "duracao_quedas_min_60d": 25, "probabilidade_churn": 0.7866, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 187.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a183526b0b189512", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.16, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8058, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1590a39fde592763", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 243.97, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8081, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "aa4b2a5df75308f6", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.98, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7885, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "621fe981521cd58b", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.8, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.792, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.28, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e8c1ac35eec4b818", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7782, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 186.08, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "9da5e974ad8e73b8", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.94, "total_chamados_60d": 0, "duracao_quedas_min_60d": 15, "probabilidade_churn": 0.7892, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 185.54, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d8ce9c1510228cdc", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.65, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7822, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 185.03, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "eda9340d5107e0ad", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.72, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7937, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 183.74, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "577e67f5c7a0e3b4", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.57, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7746, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 183.53, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "028d04cb77905aeb", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.14, "total_chamados_60d": 0, "duracao_quedas_min_60d": 63, "probabilidade_churn": 0.793, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.94, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a20f65831b1a092a", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.39, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7855, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.85, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3ae2e7f1b5968cfc", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.06, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7929, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.83, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "0f6335845ba7523e", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.09, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7737, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.78, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "fb3e54e1caa53b08", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 257.68, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7532, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.55, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d0f493cdbb83da38", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.775, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.13, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1a7fc83f1ba4f417", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.46, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7828, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 182.08, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7e34bb8bbd063a57", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.58, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7841, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 181.61, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "35c9cc4ae05fa856", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.14, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7698, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 181.59, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e11fc3daf8f83e42", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.49, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7518, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 180.96, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1d2f1d82f136282d", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.7, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7651, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 180.65, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7777d42cfd76000b", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.17, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7723, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 179.49, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cf55110e270368dc", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 244.76, "total_chamados_60d": 0, "duracao_quedas_min_60d": 26, "probabilidade_churn": 0.783, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 179.48, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e60ed009a178317a", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 258.29, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7419, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 179.45, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d9ef324d035a9cdc", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.37, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7555, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 179.19, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ab483b1135a93e65", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.72, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7652, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 177.8, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f5119061f720730e", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.08, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7512, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 177.54, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "9caf160ae8830d24", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.33, "total_chamados_60d": 0, "duracao_quedas_min_60d": 74, "probabilidade_churn": 0.7651, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 177.4, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ae58c3076176665d", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 253.92, "total_chamados_60d": 0, "duracao_quedas_min_60d": 293, "probabilidade_churn": 0.7469, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 176.96, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "fcc2bf4824644942", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.03, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.748, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 176.48, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "36dc8cbee4585e6c", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.13, "total_chamados_60d": 0, "duracao_quedas_min_60d": 19, "probabilidade_churn": 0.7564, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 176.39, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3abf10b66e60362b", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.29, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7499, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 176.38, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5e84a25a60a5fc8f", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.02, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7687, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 176.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "bb9645dcd103706c", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 246.13, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7682, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 176.24, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "65922f8e74759293", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.78, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7679, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 175.81, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1371820d8433f441", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.17, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7689, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 175.52, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6b9d282b60f6508e", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 242.87, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7752, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 175.22, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "af3c188871de1f7b", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.31, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7336, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 174.92, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "60ff3f3d179645cf", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 255.74, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7335, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 174.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a268335379c75441", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.73, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.755, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 173.67, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8e847ad83b800367", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.16, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7493, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 173.24, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "93dab7a8af8b2c35", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 256.55, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7276, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 173.2, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8385f981baaeb04b", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.9, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7355, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 172.37, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3394c59d73126447", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 243.58, "total_chamados_60d": 1, "duracao_quedas_min_60d": 54, "probabilidade_churn": 0.7633, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 172.27, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1313bc23fbde7ae7", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.42, "total_chamados_60d": 0, "duracao_quedas_min_60d": 20, "probabilidade_churn": 0.7506, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 172.0, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "248f922efe8da5ac", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.71, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7345, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 171.88, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6aaedc99081ad263", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 242.24, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7656, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 171.68, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a41124fc6a389bca", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.7, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7251, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 170.7, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5e1c3d4f9559ccf5", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.13, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7441, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 170.64, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f776d4f8f4ba92c8", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.18, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7464, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 170.46, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3a139a19af0215af", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.64, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7392, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 169.58, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "71120a3bdc765da7", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.46, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7238, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 169.15, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "454af4800621b574", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 243.39, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7527, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 168.83, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f53b72756bf46326", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.19, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7407, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 168.7, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4d0db736a363bf86", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.39, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7333, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 168.43, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7c0825ce30edf591", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.78, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7289, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 168.32, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4af3b70e0ee1a69c", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.13, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7387, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 168.02, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "7a58eb4cd34bb2af", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.43, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7342, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 167.82, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "57b7574bfa57cc8f", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.08, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.738, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 167.75, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b72287afc7c36762", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.35, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.735, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 167.07, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "fea8f9451fa7d158", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 255.8, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7088, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 166.45, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "20bb37bc8f1fb971", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.61, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7291, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 166.39, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "9e6a72fce2d88e85", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.59, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7175, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 166.35, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c9a5d540cb8129f3", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 256.32, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7053, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 165.79, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "531d0537c0a7544d", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 242.06, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7462, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 165.59, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f490a65d168fd614", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.79, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7197, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 165.42, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e0ffd14251291278", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 254.53, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7083, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 165.16, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5c2eb3fa15da2414", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.19, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7226, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 164.88, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3edfbf518fb08966", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.43, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7274, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 164.78, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5d25de54fd787894", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.31, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7188, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 164.7, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "bc5ac20d64cb613e", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 244.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7373, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 164.68, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "dedeceb2c42c441a", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 244.18, "total_chamados_60d": 0, "duracao_quedas_min_60d": 28, "probabilidade_churn": 0.7367, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 164.66, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "74085dd18ec49f74", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.58, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7302, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 163.95, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "85ec785a9324ef02", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 242.68, "total_chamados_60d": 0, "duracao_quedas_min_60d": 277, "probabilidade_churn": 0.7378, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 163.6, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4ae07d152b1e11e3", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.77, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7239, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 163.08, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "037300b6d84e9872", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 254.15, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7028, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 163.06, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3e4998732dcef800", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 245.48, "total_chamados_60d": 0, "duracao_quedas_min_60d": 187, "probabilidade_churn": 0.7275, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 163.02, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e9916732912750d8", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.4, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7104, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 162.13, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1bdfa058d673e23c", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.84, "total_chamados_60d": 4, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.983, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 161.98, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f055840c78bdd4e3", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.66, "total_chamados_60d": 0, "duracao_quedas_min_60d": 241, "probabilidade_churn": 0.7089, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 161.0, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ad7a0c941df4a046", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 244.18, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7226, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 160.32, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a69ba891386b92c6", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.61, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7084, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 159.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "251e0741acc88a21", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 255.44, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6885, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 159.6, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "baad92b8afdf726d", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 244.95, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.717, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 159.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "fc3f3b66c5ca39e9", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.93, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7075, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 159.02, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "9bf8ae5edaa70e7c", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.88, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7068, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 158.75, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c1779a1956fb4493", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 252.93, "total_chamados_60d": 0, "duracao_quedas_min_60d": 216, "probabilidade_churn": 0.6924, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 158.66, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cbbf4524a924e2e3", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 251.28, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6955, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 158.2, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "dd65b25c741f97e7", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 247.39, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7049, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 157.73, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "681b340c1f3fd304", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 246.81, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6997, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 155.59, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "29cddacc12688a0a", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 178.51, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9657, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 155.21, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f1ea58c0787b3042", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.9, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6768, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 154.52, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8d6e64b05c79814e", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.64, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6909, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 154.45, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4b3cee28d0657c17", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.39, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9513, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 154.22, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f8b21d58ddbd4518", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.4, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6873, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 153.98, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ff4da542e36fa4f0", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 253.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6758, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 153.44, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "db531c5b879cfe31", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.02, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6782, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 153.36, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1058b74634900d1c", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.12, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6858, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 153.27, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6c45054759df6194", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 245.46, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6953, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 153.04, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b86ca29623642e2f", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.89, "total_chamados_60d": 0, "duracao_quedas_min_60d": 7, "probabilidade_churn": 0.6784, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 152.46, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "592de2eee93a86ca", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 242.34, "total_chamados_60d": 0, "duracao_quedas_min_60d": 20, "probabilidade_churn": 0.6979, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 151.1, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "2c50d61c9140a990", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 241.07, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7002, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 150.68, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ddb93d289400a5a9", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.54, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9383, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 150.26, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "abbcd011d9041d63", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 182.23, "total_chamados_60d": 2, "duracao_quedas_min_60d": 159, "probabilidade_churn": 0.9222, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 149.75, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "954fb9dc00f24da7", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 249.98, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6706, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 149.22, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "79c32586b630f404", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 252.48, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6631, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 148.95, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3f5df4e98a07830d", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.88, "total_chamados_60d": 0, "duracao_quedas_min_60d": 215, "probabilidade_churn": 0.6693, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 148.73, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "55b125e653bec839", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 256.22, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6494, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 147.65, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c922abaadb968e6a", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.39, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.664, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 147.49, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d6360d6c0d1d0e02", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 245.6, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6767, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 147.41, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "81bc29a211420d37", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 250.51, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6624, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 147.08, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "08e05081fc285684", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 248.59, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.666, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 146.61, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5ea8f4b7493cd6a8", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 176.64, "total_chamados_60d": 2, "duracao_quedas_min_60d": 55, "probabilidade_churn": 0.9359, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 146.3, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "572efe74ff85d238", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 184.27, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8949, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 145.78, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "260a22f654682f3d", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 239.91, "total_chamados_60d": 0, "duracao_quedas_min_60d": 11, "probabilidade_churn": 0.6858, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 145.31, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "acfc9029ebfaaa26", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.19, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9118, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 145.01, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "69a7e1d3c3cc06f1", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 246.73, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6651, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 144.77, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ea0f73ca65c4698e", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 185.76, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8819, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 144.42, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ea906647311d9ea9", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.09, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9233, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 144.02, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f7be8b32a24f085c", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 185.27, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8817, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 143.82, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ace7d00e88878725", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 184.38, "total_chamados_60d": 1, "duracao_quedas_min_60d": 13, "probabilidade_churn": 0.884, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 143.37, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8269804465789359", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 252.67, "total_chamados_60d": 1, "duracao_quedas_min_60d": 85, "probabilidade_churn": 0.644, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 143.03, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "83f7f39d6082e2da", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 178.66, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9085, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 142.51, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3bf2ae4af1cf45dd", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 178.82, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.9042, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 141.73, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "06dc74bc9268aab3", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 187.14, "total_chamados_60d": 0, "duracao_quedas_min_60d": 147, "probabilidade_churn": 0.8601, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 140.81, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1d0884be059cef5e", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 255.61, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6292, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 140.65, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5c435a6ebe1b27d2", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 181.24, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8823, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 139.48, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "fc580625dbc59118", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 0, "media_valor_fatura_3m": 244.22, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6546, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 139.43, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "da63bb1bad8c702e", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.89, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6367, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 139.27, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a75c9c2b07e28a3e", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 255.16, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.624, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 138.62, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a83fdbe7834f3dd8", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.79, "total_chamados_60d": 2, "duracao_quedas_min_60d": 13, "probabilidade_churn": 0.8927, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 137.98, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e87ea874695b026f", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.82, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6349, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 137.85, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ee87cc89897253a2", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.52, "total_chamados_60d": 0, "duracao_quedas_min_60d": 139, "probabilidade_churn": 0.8795, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 136.94, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "5ef7f190023575a3", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 248.14, "total_chamados_60d": 1, "duracao_quedas_min_60d": 8, "probabilidade_churn": 0.6359, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 136.82, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "920e8c4cfad617b5", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 178.13, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8852, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 136.68, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b7f80e990fd4c364", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 244.36, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6425, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 135.82, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a4fccd21bd266a09", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.06, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8717, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 135.77, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "53b4798345b039ba", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 251.79, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6218, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 135.27, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4207cb3e6c4a69f8", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.85, "total_chamados_60d": 1, "duracao_quedas_min_60d": 23, "probabilidade_churn": 0.8664, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 134.34, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "0012783afa6dae9c", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 248.48, "total_chamados_60d": 0, "duracao_quedas_min_60d": 38, "probabilidade_churn": 0.6254, "decil_risco": "Decil 2", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 133.8, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8695486d2636b610", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.53, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8653, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 133.74, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "92afac49b581cfc1", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 182.13, "total_chamados_60d": 1, "duracao_quedas_min_60d": 13, "probabilidade_churn": 0.8529, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 133.73, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "67e4b8362501feec", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 181.72, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8536, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 133.45, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "bbf68351cec43a86", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 253.54, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6091, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 132.58, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "398afe5cf5975994", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 253.93, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6072, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 132.27, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "406107d4e8022c7d", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 256.11, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6018, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 132.2, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "6c0be0754370459c", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.52, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8582, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 132.12, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "978e4b08c7173087", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.16, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8532, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 131.68, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "04ece8a62d9c92a4", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 183.48, "total_chamados_60d": 0, "duracao_quedas_min_60d": 171, "probabilidade_churn": 0.8374, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 131.59, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e8133c4280871460", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.46, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8556, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 131.47, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4493be2e3dd17566", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.55, "total_chamados_60d": 0, "duracao_quedas_min_60d": 85, "probabilidade_churn": 0.6105, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 130.73, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "546607f0c935a038", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.57, "total_chamados_60d": 0, "duracao_quedas_min_60d": 168, "probabilidade_churn": 0.8584, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 130.06, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "15175d48fde8380d", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 252.81, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.6029, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 130.05, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "11975558128f0d77", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.3, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8583, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 129.74, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "a16eea8588e798b6", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.77, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8532, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 129.11, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "8ca46d4e6ea181ae", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 253.39, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5973, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 128.7, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "37dff6f20a83a5e0", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 181.24, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8344, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 128.55, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ba7fe469ec87d898", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 178.76, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8449, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 128.3, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "2cf0c81a7ec9b119", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 1, "media_valor_fatura_3m": 182.19, "total_chamados_60d": 4, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8282, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 128.12, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d8c68dd66d5a8bca", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.27, "total_chamados_60d": 1, "duracao_quedas_min_60d": 5, "probabilidade_churn": 0.8368, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 128.07, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f40344bc541b1741", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.67, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8483, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 127.9, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "e9d206f1b8873bef", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.07, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8366, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 127.81, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "c0b4199fc38223c2", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 256.07, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5874, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 127.52, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "43e76bd462dd1285", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 176.85, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8487, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 127.12, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "23d6ccf26b0102a6", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 182.41, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8211, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 126.72, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "91103b054a247f14", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 258.42, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5766, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.75, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "e467e0ccb7acc08b", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 182.05, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.818, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.64, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "ebf349bc1f4870ad", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 256.96, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5795, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.62, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "c8d7392f58740f9d", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 182.18, "total_chamados_60d": 1, "duracao_quedas_min_60d": 123, "probabilidade_churn": 0.817, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.54, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cb8d125749c16283", "regiao": "Norte", "tipo_plano": "Combo Fibra+Movel", "eh_fidelizado": 1, "media_valor_fatura_3m": 150.92, "total_chamados_60d": 1, "duracao_quedas_min_60d": 657, "probabilidade_churn": 0.9861, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.52, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "825254db24e2f854", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.28, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8249, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.38, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "2e05dbc8d9ca07f8", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 1, "media_valor_fatura_3m": 183.93, "total_chamados_60d": 3, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8084, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.35, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "2296a19390b159b3", "regiao": "Norte", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.81, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8349, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 125.05, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d4ff945b3ab41f89", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 1, "media_valor_fatura_3m": 182.43, "total_chamados_60d": 3, "duracao_quedas_min_60d": 47, "probabilidade_churn": 0.8133, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.95, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "09c369239ebfd586", "regiao": "Norte", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.12, "total_chamados_60d": 2, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8375, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.91, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "0b9410408ebc74fd", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 184.39, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8042, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.84, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cace93e34831c775", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 248.01, "total_chamados_60d": 1, "duracao_quedas_min_60d": 23, "probabilidade_churn": 0.5975, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.71, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "4dba81fa7dbc32d4", "regiao": "Nordeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 249.38, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5935, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.49, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "b7ae0a8e5712bcd4", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 185.29, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7985, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.42, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "cd33991955c6e49c", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.88, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5893, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 124.28, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "dba8bb4b825f45de", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.54, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5871, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 123.34, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "9d46be359ae81877", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.69, "total_chamados_60d": 0, "duracao_quedas_min_60d": 106, "probabilidade_churn": 0.8111, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 122.66, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "d3e994a02843a99e", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 178.94, "total_chamados_60d": 1, "duracao_quedas_min_60d": 105, "probabilidade_churn": 0.8187, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 122.59, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6066bb6f3da13868", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 181.38, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8073, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 122.5, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f113e872228f7fa9", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 181.16, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8031, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 121.32, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "b068a7957b8fae99", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.94, "total_chamados_60d": 0, "duracao_quedas_min_60d": 109, "probabilidade_churn": 0.8175, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 121.29, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "0279b398da892aa7", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.01, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5873, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 120.79, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "ef746b10853aa0b1", "regiao": "Centro-Oeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 248.52, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5832, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 120.62, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "550339967b221d25", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.48, "total_chamados_60d": 0, "duracao_quedas_min_60d": 107, "probabilidade_churn": 0.8024, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 120.47, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "224bc81a613f3da9", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 247.28, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5856, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 120.46, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "9baf9a4baff2d412", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.72, "total_chamados_60d": 0, "duracao_quedas_min_60d": 161, "probabilidade_churn": 0.8126, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 119.96, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3aefe866bff4aaec", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 182.56, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7901, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 119.74, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "89c09a4beb87ae8c", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 181.51, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7946, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 119.73, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6b58be0ea0ec116c", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 254.75, "total_chamados_60d": 0, "duracao_quedas_min_60d": 191, "probabilidade_churn": 0.5652, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 119.42, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "6b3e0c94aea7fe95", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 179.47, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8011, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 119.15, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "1d7932c08210ce35", "regiao": "Centro-Oeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 184.16, "total_chamados_60d": 0, "duracao_quedas_min_60d": 26, "probabilidade_churn": 0.7801, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 119.02, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "f7ed8d20fb8a979d", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 184.4, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7775, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 118.65, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "84332ea2c5a82ade", "regiao": "Norte", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 253.39, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5638, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 118.01, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "32936f494b167ecd", "regiao": "Sul", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 251.74, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5645, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 117.06, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "8d789a2775650f2b", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 248.26, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5719, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 116.89, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "923419ac6ef99a78", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 180.12, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.7877, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 116.77, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4ef310b8e92d165d", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 184.95, "total_chamados_60d": 0, "duracao_quedas_min_60d": 90, "probabilidade_churn": 0.767, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 116.74, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "6662dd7fa394015a", "regiao": "Nordeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 173.81, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.8149, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 116.46, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "60cd72d891294fe4", "regiao": "Sudeste", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 183.38, "total_chamados_60d": 0, "duracao_quedas_min_60d": 118, "probabilidade_churn": 0.7717, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 116.31, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "3843babf8fecfecc", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 248.06, "total_chamados_60d": 0, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5699, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 116.13, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "da0b1f10e24b4a5f", "regiao": "Sul", "tipo_plano": "Fibra 1GB", "eh_fidelizado": 0, "media_valor_fatura_3m": 177.77, "total_chamados_60d": 1, "duracao_quedas_min_60d": 10, "probabilidade_churn": 0.7896, "decil_risco": "Decil 1", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 114.86, "acao_recomendada": "Contato Prioritário Imediato (Oferta Premium)"}, {"id_cliente_hash": "4dadc9a63bc63caa", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 245.8, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5708, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 114.78, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}, {"id_cliente_hash": "17edb128e85e42f6", "regiao": "Sudeste", "tipo_plano": "Corporativo PME", "eh_fidelizado": 1, "media_valor_fatura_3m": 250.33, "total_chamados_60d": 1, "duracao_quedas_min_60d": 0, "probabilidade_churn": 0.5604, "decil_risco": "Decil 3", "faixa_risco": "Crítico", "retorno_esperado_campanha_rs": 114.76, "acao_recomendada": "Contato Digital / WhatsApp (Oferta Padrão)"}];
+    const DECIS_PADRAO = {
+        labels: ["Decil 1", "Decil 10", "Decil 2", "Decil 3", "Decil 4", "Decil 5", "Decil 6", "Decil 7", "Decil 8", "Decil 9"],
+        probs: [77.8, 18.4, 66.2, 55.2, 41.2, 34.4, 30.6, 27.8, 25.3, 22.5],
+        retornos: [59.49, -28.61, 41.05, 32.17, 4.99, -8.88, -15.68, -19.46, -22.76, -25.14]
+    };
 
-    // Renderizar Gráfico de Decis
-    const ctx = document.getElementById('chartDecis').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: decisLabels,
-            datasets: [
-                {
-                    label: 'Probabilidade Média de Churn (%)',
-                    data: decisProbs,
-                    backgroundColor: 'rgba(99, 102, 241, 0.75)',
-                    borderRadius: 6,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Retorno Financeiro Esperado Médio (R$)',
-                    data: decisRetornos,
-                    type: 'line',
-                    borderColor: '#10b981',
-                    borderWidth: 3,
-                    pointBackgroundColor: '#10b981',
-                    pointRadius: 4,
-                    yAxisID: 'y1'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    labels: { color: '#94a3b8', font: { family: 'Inter', size: 12 } }
-                }
+    // Estado da Aplicação em Memória
+    let datasetAtual = [...DADOS_PADRAO];
+    let dadosFiltrados = [...DADOS_PADRAO];
+    let colunaOrdenacao = 'retorno_esperado_campanha_rs';
+    let ordemAsc = false;
+    let paginaAtual = 1;
+    let linhasPorPagina = 15;
+    let chartInstance = null;
+
+    // Toast Notification
+    function mostrarToast(msg) {
+        const t = document.getElementById('toast');
+        t.innerText = msg;
+        t.style.display = 'flex';
+        setTimeout(() => { t.style.display = 'none'; }, 3500);
+    }
+
+    // Inicialização do Gráfico Chart.js
+    function initChart(labels, probs, retornos) {
+        const ctx = document.getElementById('chartDecis').getContext('2d');
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
+        chartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Probabilidade Média de Churn (%)',
+                        data: probs,
+                        backgroundColor: 'rgba(99, 102, 241, 0.75)',
+                        borderRadius: 6,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: 'Retorno Financeiro Esperado Médio (R$)',
+                        data: retornos,
+                        type: 'line',
+                        borderColor: '#10b981',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#10b981',
+                        pointRadius: 4,
+                        yAxisID: 'y1'
+                    }
+                ]
             },
-            scales: {
-                x: {
-                    ticks: { color: '#64748b' },
-                    grid: { color: 'rgba(255, 255, 255, 0.04)' }
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#94a3b8', font: { family: 'Inter', size: 12 } }
+                    }
                 },
-                y: {
-                    type: 'linear',
-                    position: 'left',
-                    ticks: { color: '#818cf8', callback: val => val + '%' },
-                    grid: { color: 'rgba(255, 255, 255, 0.04)' }
-                },
-                y1: {
-                    type: 'linear',
-                    position: 'right',
-                    ticks: { color: '#34d399', callback: val => 'R$ ' + val },
-                    grid: { drawOnChartArea: false }
+                scales: {
+                    x: {
+                        ticks: { color: '#64748b' },
+                        grid: { color: 'rgba(255, 255, 255, 0.04)' }
+                    },
+                    y: {
+                        type: 'linear',
+                        position: 'left',
+                        ticks: { color: '#818cf8', callback: val => val + '%' },
+                        grid: { color: 'rgba(255, 255, 255, 0.04)' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        position: 'right',
+                        ticks: { color: '#34d399', callback: val => 'R$ ' + val },
+                        grid: { drawOnChartArea: false }
+                    }
                 }
             }
+        });
+    }
+
+    // Recalcular Decis a partir de qualquer dataset carregado
+    function recalcularDecis(dados) {
+        const decisMap = {};
+        for (let i = 1; i <= 10; i++) {
+            decisMap['Decil ' + i] = { probs: [], retornos: [] };
         }
-    });
+        dados.forEach(d => {
+            if (decisMap[d.decil_risco]) {
+                decisMap[d.decil_risco].probs.push(d.probabilidade_churn * 100);
+                decisMap[d.decil_risco].retornos.push(d.retorno_esperado_campanha_rs);
+            }
+        });
+        const labels = Object.keys(decisMap);
+        const probs = labels.map(k => {
+            const arr = decisMap[k].probs;
+            return arr.length ? +(arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(1) : 0;
+        });
+        const retornos = labels.map(k => {
+            const arr = decisMap[k].retornos;
+            return arr.length ? +(arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2) : 0;
+        });
+        initChart(labels, probs, retornos);
+    }
+
+    // Atualizar Todos os KPIs
+    function atualizarKPIs(dados) {
+        document.getElementById('kpiTotalClientes').innerText = dados.length.toLocaleString('pt-BR');
+        
+        const mediaChurn = dados.length ? (dados.reduce((acc, d) => acc + d.probabilidade_churn, 0) / dados.length) * 100 : 0;
+        document.getElementById('kpiChurnMedio').innerText = mediaChurn.toFixed(2) + '%';
+        
+        const decil1 = dados.filter(d => d.decil_risco === 'Decil 1');
+        document.getElementById('kpiDecil1Qtd').innerText = decil1.length.toLocaleString('pt-BR');
+        
+        const probDecil1 = decil1.length ? (decil1.reduce((acc, d) => acc + d.probabilidade_churn, 0) / decil1.length) * 100 : 0;
+        document.getElementById('kpiProbDecil1').innerText = probDecil1.toFixed(1) + '%';
+        
+        const retDecil1 = decil1.length ? (decil1.reduce((acc, d) => acc + d.retorno_esperado_campanha_rs, 0) / decil1.length) : 0;
+        document.getElementById('kpiRetornoDecil1').innerText = 'R$ ' + retDecil1.toFixed(2);
+    }
+
+    // Renderizar Tabela Paginada
+    function renderTabela() {
+        const tbody = document.getElementById('tbodyClientes');
+        tbody.innerHTML = '';
+
+        const inicio = (paginaAtual - 1) * linhasPorPagina;
+        const fim = inicio + linhasPorPagina;
+        const paginaDados = dadosFiltrados.slice(inicio, fim);
+
+        if (paginaDados.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="12" style="text-align:center; padding:30px; color:#64748b;">Nenhum cliente encontrado com os filtros selecionados.</td></tr>';
+            document.getElementById('infoPaginacao').innerText = '0 registros encontrados';
+            document.getElementById('btnPagAnt').disabled = true;
+            document.getElementById('btnPagProx').disabled = true;
+            return;
+        }
+
+        paginaDados.forEach(c => {
+            const tr = document.createElement('tr');
+            const tierClass = 'tier-' + (c.faixa_risco ? c.faixa_risco.toLowerCase() : 'medio');
+            tr.innerHTML = `
+                <td><code>${c.id_cliente_hash || '-'}</code></td>
+                <td>${c.regiao || '-'}</td>
+                <td>${c.tipo_plano || '-'}</td>
+                <td>${c.eh_fidelizado == 1 ? 'Sim' : 'Não'}</td>
+                <td>R$ ${Number(c.media_valor_fatura_3m || 0).toFixed(2)}</td>
+                <td>${c.total_chamados_60d || 0}</td>
+                <td>${c.duracao_quedas_min_60d || 0} min</td>
+                <td><strong>${(Number(c.probabilidade_churn || 0) * 100).toFixed(1)}%</strong></td>
+                <td>${c.decil_risco || '-'}</td>
+                <td><span class="badge-tier ${tierClass}">${c.faixa_risco || '-'}</span></td>
+                <td style="color: ${c.retorno_esperado_campanha_rs > 0 ? '#34d399' : '#f87171'}; font-weight: 700;">
+                    R$ ${Number(c.retorno_esperado_campanha_rs || 0).toFixed(2)}
+                </td>
+                <td style="font-size: 12px; font-weight: 500;">${c.acao_recomendada || '-'}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        const total = dadosFiltrados.length;
+        document.getElementById('infoPaginacao').innerText = `Mostrando ${inicio + 1} - ${Math.min(fim, total)} de ${total.toLocaleString('pt-BR')} clientes`;
+        document.getElementById('numPagina').innerText = paginaAtual;
+        document.getElementById('btnPagAnt').disabled = (paginaAtual === 1);
+        document.getElementById('btnPagProx').disabled = (fim >= total);
+    }
+
+    // Filtrar e Ordenar
+    function aplicarFiltros() {
+        const termo = document.getElementById('filtroTexto').value.toLowerCase();
+        const faixa = document.getElementById('filtroFaixa').value;
+        const regiao = document.getElementById('filtroRegiao').value;
+
+        dadosFiltrados = datasetAtual.filter(c => {
+            const matchTexto = !termo || 
+                (c.id_cliente_hash && c.id_cliente_hash.toLowerCase().includes(termo)) ||
+                (c.tipo_plano && c.tipo_plano.toLowerCase().includes(termo)) ||
+                (c.acao_recomendada && c.acao_recomendada.toLowerCase().includes(termo));
+
+            const matchFaixa = (faixa === 'TODAS') || (c.faixa_risco === faixa);
+            const matchRegiao = (regiao === 'TODAS') || (c.regiao === regiao);
+
+            return matchTexto && matchFaixa && matchRegiao;
+        });
+
+        // Ordenação
+        dadosFiltrados.sort((a, b) => {
+            let vA = a[colunaOrdenacao];
+            let vB = b[colunaOrdenacao];
+            if (typeof vA === 'string') vA = vA.toLowerCase();
+            if (typeof vB === 'string') vB = vB.toLowerCase();
+            if (vA < vB) return ordemAsc ? -1 : 1;
+            if (vA > vB) return ordemAsc ? 1 : -1;
+            return 0;
+        });
+
+        paginaAtual = 1;
+        renderTabela();
+    }
+
+    function ordenarPor(col) {
+        if (colunaOrdenacao === col) {
+            ordemAsc = !ordemAsc;
+        } else {
+            colunaOrdenacao = col;
+            ordemAsc = false;
+        }
+        aplicarFiltros();
+    }
+
+    function mudarPagina(delta) {
+        paginaAtual += delta;
+        renderTabela();
+    }
 
     // Simulador Dinâmico de ROI
     const elCapacidade = document.getElementById('rangeCapacidade');
@@ -586,15 +995,10 @@
         document.getElementById('valCustoOferta').innerText = `R$ ${cOferta.toFixed(2)}`;
         document.getElementById('valCustoContato').innerText = `R$ ${cContato.toFixed(2)}`;
 
-        // Volume de clientes abordados na base de 500k
         const totalAbordados = (capPct / 100) * 500000;
-        // Na faixa do Top 10%, a taxa de churn é de ~30.6% dos cancelamentos totais
-        const churnMedioTop = 0.306 * 14000;
-        // Proporção abordada ajustada
-        const churnAbordado = churnMedioTop * (capPct / 10);
-        const retidos = Math.round(churnAbordado * eficPct);
+        const churnCapturado = 0.306 * 14000 * (capPct / 10);
+        const retidos = Math.round(churnCapturado * eficPct);
 
-        // LTV 12 meses preservado com margem de 70% (ARPU R$ 120)
         const receitaPreservada = retidos * 120 * 12 * 0.70;
         const custoTotalCampanha = totalAbordados * (cContato + (cOferta * eficPct));
         const lucroLiquido = receitaPreservada - custoTotalCampanha;
@@ -606,51 +1010,105 @@
         document.getElementById('resROI').className = 'roi-res-val ' + (roiPct >= 0 ? 'green' : 'red');
     }
 
+    // Leitor e Parser Dinâmico de CSV (FileReader API)
+    document.getElementById('fileInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            const csvText = evt.target.result;
+            const linhas = csvText.split(/\r?\n/).filter(l => l.trim().length > 0);
+            if (linhas.length < 2) {
+                alert('Arquivo CSV inválido ou vazio.');
+                return;
+            }
+
+            const headers = linhas[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+            const novosClientes = [];
+
+            for (let i = 1; i < linhas.length; i++) {
+                const valores = linhas[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+                if (valores.length === headers.length) {
+                    const obj = {};
+                    headers.forEach((h, idx) => {
+                        const val = valores[idx];
+                        if (!isNaN(val) && val !== '') {
+                            obj[h] = parseFloat(val);
+                        } else {
+                            obj[h] = val;
+                        }
+                    });
+                    novosClientes.push(obj);
+                }
+            }
+
+            if (novosClientes.length > 0) {
+                datasetAtual = novosClientes;
+                document.getElementById('sourceTitle').innerText = 'Base Dinâmica Carregada do Usuário';
+                document.getElementById('sourceDesc').innerHTML = `Arquivo: <code>${file.name}</code> (${novosClientes.length.toLocaleString('pt-BR')} registros processados com sucesso)`;
+                
+                atualizarKPIs(datasetAtual);
+                recalcularDecis(datasetAtual);
+                aplicarFiltros();
+                atualizarSimulador();
+                mostrarToast(`✅ ${novosClientes.length.toLocaleString('pt-BR')} registros carregados com sucesso!`);
+            }
+        };
+        reader.readAsText(file);
+    });
+
+    // Restaurar Base Padrão
+    function restaurarBasePadrao() {
+        datasetAtual = [...DADOS_PADRAO];
+        document.getElementById('sourceTitle').innerText = 'Base Ativa: Inferência Modelo Campeão';
+        document.getElementById('sourceDesc').innerHTML = 'Arquivo carregado: <code>lista_priorizada_retencao.csv</code> (20,237 clientes avaliados)';
+        atualizarKPIs(datasetAtual);
+        initChart(DECIS_PADRAO.labels, DECIS_PADRAO.probs, DECIS_PADRAO.retornos);
+        aplicarFiltros();
+        atualizarSimulador();
+        mostrarToast('🔄 Base padrão restaurada com sucesso!');
+    }
+
+    // Exportar CSV Filtrado
+    function exportarCSVFiltrado() {
+        if (!dadosFiltrados.length) return;
+        const colunas = Object.keys(dadosFiltrados[0]);
+        let csvContent = 'data:text/csv;charset=utf-8,' + colunas.join(',') + '\n';
+        dadosFiltrados.forEach(row => {
+            const linha = colunas.map(c => `"${row[c] || ''}"`).join(',');
+            csvContent += linha + '\n';
+        });
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement('a');
+        link.setAttribute('href', encodedUri);
+        link.setAttribute('download', 'clientes_retencao_filtrados.csv');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        mostrarToast('📥 Download do CSV iniciado!');
+    }
+
+    // Event Listeners
+    document.getElementById('filtroTexto').addEventListener('input', aplicarFiltros);
+    document.getElementById('filtroFaixa').addEventListener('change', aplicarFiltros);
+    document.getElementById('filtroRegiao').addEventListener('change', aplicarFiltros);
+    document.getElementById('itensPorPagina').addEventListener('change', function(e) {
+        linhasPorPagina = parseInt(e.target.value);
+        paginaAtual = 1;
+        renderTabela();
+    });
+
     elCapacidade.addEventListener('input', atualizarSimulador);
     elEficacia.addEventListener('input', atualizarSimulador);
     elCustoOferta.addEventListener('input', atualizarSimulador);
     elCustoContato.addEventListener('input', atualizarSimulador);
-    atualizarSimulador();
 
-    // Renderizar Tabela
-    const tbody = document.getElementById('tbodyClientes');
-    function renderTabela(dados) {
-        tbody.innerHTML = '';
-        dados.forEach(c => {
-            const tr = document.createElement('tr');
-            const tierClass = 'tier-' + c.faixa_risco.toLowerCase();
-            tr.innerHTML = `
-                <td><code>${c.id_cliente_hash}</code></td>
-                <td>${c.regiao}</td>
-                <td>${c.tipo_plano}</td>
-                <td>${c.eh_fidelizado === 1 ? 'Sim' : 'Não'}</td>
-                <td>R$ ${c.media_valor_fatura_3m.toFixed(2)}</td>
-                <td>${c.total_chamados_60d}</td>
-                <td>${c.duracao_quedas_min_60d} min</td>
-                <td><strong>${(c.probabilidade_churn * 100).toFixed(1)}%</strong></td>
-                <td>${c.decil_risco}</td>
-                <td><span class="badge-tier ${tierClass}">${c.faixa_risco}</span></td>
-                <td style="color: ${c.retorno_esperado_campanha_rs > 0 ? '#34d399' : '#f87171'}; font-weight: 700;">
-                    R$ ${c.retorno_esperado_campanha_rs.toFixed(2)}
-                </td>
-                <td style="font-size: 12px; font-weight: 500;">${c.acao_recomendada}</td>
-            `;
-            tbody.appendChild(tr);
-        });
-    }
-    renderTabela(listaClientes);
-
-    // Filtro de Busca na Tabela
-    document.getElementById('filtroTabela').addEventListener('input', function(e) {
-        const termo = e.target.value.toLowerCase();
-        const filtrados = listaClientes.filter(c => 
-            c.id_cliente_hash.toLowerCase().includes(termo) ||
-            c.regiao.toLowerCase().includes(termo) ||
-            c.tipo_plano.toLowerCase().includes(termo) ||
-            c.acao_recomendada.toLowerCase().includes(termo) ||
-            c.faixa_risco.toLowerCase().includes(termo)
-        );
-        renderTabela(filtrados);
+    // Inicialização ao carregar a página
+    window.addEventListener('DOMContentLoaded', () => {
+        initChart(DECIS_PADRAO.labels, DECIS_PADRAO.probs, DECIS_PADRAO.retornos);
+        aplicarFiltros();
+        atualizarSimulador();
     });
 </script>
 </body>
