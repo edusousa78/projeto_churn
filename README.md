@@ -111,7 +111,18 @@ projeto_churn/
 │   │   ├── abt_churn_train.parquet      # Safra de treino (corte 2024-05-01)
 │   │   ├── abt_churn_oot.parquet        # Safra Out-of-Time (corte 2024-06-01)
 │   │   └── lista_priorizada_retencao.csv# Fila priorizada com decil e EV
-│   └── conecta_brasil.db                # Banco relacional SQLite com índices
+├── docker-compose.yml                   # Orquestração do banco PostgreSQL 16 via Docker
+├── .env.example                         # Variáveis de ambiente para conexão PostgreSQL
+├── sql/
+│   ├── 01_create_tables.sql             # Script DDL oficial de criação no PostgreSQL
+│   └── 02_prepare_abt_view.sql          # Query analítica em SQL avançado (CTEs e Point-in-Time)
+├── data/
+│   ├── raw/                             # Bases brutas simuladas (.csv)
+│   ├── processed/                       # Bases analíticas e lista priorizada
+│   │   ├── abt_churn_train.parquet      # Safra de treino (corte 2024-05-01)
+│   │   ├── abt_churn_oot.parquet        # Safra Out-of-Time (corte 2024-06-01)
+│   │   └── lista_priorizada_retencao.csv# Fila priorizada com decil e EV
+│   └── conecta_brasil.db                # Banco relacional SQLite local com índices
 ├── docs/
 │   ├── business_requirements.md         # Requisitos formais do projeto
 │   ├── data_dictionary.md               # Dicionário de dados das 6 tabelas
@@ -126,7 +137,7 @@ projeto_churn/
 ├── notebooks/
 │   └── 01_analise_exploratoria.py       # Script de geração dos diagnósticos de EDA
 ├── reports/
-│   ├── executive_dashboard.html         # Dashboard Standalone Interativo (HTML5/CSS/JS)
+│   ├── executive_dashboard.html         # Dashboard Dinâmico Interativo (HTML5/CSS/JS)
 │   ├── relatorio_executivo.md           # Parecer executivo final para a diretoria
 │   └── figures/                         # Diagnósticos visuais gerados
 │       ├── churn_por_fidelizacao.png
@@ -140,7 +151,8 @@ projeto_churn/
 ├── src/
 │   ├── data/
 │   │   ├── generate_simulated_data.py   # Gerador de dados relacionais corporativos
-│   │   └── audit_quality.py             # Script de auditoria de dados
+│   │   ├── audit_quality.py             # Script de auditoria de dados
+│   │   └── db_postgres.py               # Gerenciador de conexão e queries no PostgreSQL
 │   ├── features/
 │   │   └── build_features.py            # Engenharia de atributos point-in-time
 │   ├── models/
@@ -181,28 +193,36 @@ source venv/bin/activate
 # 3. Instalar dependências
 pip install -r requirements.txt
 
-# 4. Gerar as bases brutas e o banco relacional SQLite (Sprint 1)
+# 4. Gerar as bases brutas e o banco relacional local (Sprint 1)
 python src/data/generate_simulated_data.py
 
 # 5. Executar a auditoria de qualidade dos dados (Sprint 1)
 python src/data/audit_quality.py
 
-# 6. Construir as bases analíticas Point-in-Time (Sprint 2)
+# 6. (Opcional - Stack PostgreSQL Corporativo):
+# Subir o banco PostgreSQL via Docker e carregar o schema/dados:
+docker compose up -d
+python src/data/db_postgres.py --init-db
+python src/data/db_postgres.py --load-data
+# Extrair a ABT via query SQL nativa com CTEs (sql/02_prepare_abt_view.sql):
+python src/data/db_postgres.py --extract-abt
+
+# 7. Construir as bases analíticas Point-in-Time (Sprint 2)
 python src/features/build_features.py
 
-# 7. Executar a análise exploratória e gerar gráficos (Sprint 2)
+# 8. Executar a análise exploratória e gerar gráficos (Sprint 2)
 python notebooks/01_analise_exploratoria.py
 
-# 8. Treinar e avaliar os modelos com validação Out-of-Time (Sprint 3)
+# 9. Treinar e avaliar os modelos com validação Out-of-Time (Sprint 3)
 python src/models/train_and_evaluate.py
 
-# 9. Executar o pipeline de inferência operacional (Sprint 4)
+# 10. Executar o pipeline de inferência operacional (Sprint 4)
 python src/pipelines/inference_pipeline.py
 
-# 10. Rodar a suíte de testes automatizados (Sprint 4)
+# 11. Rodar a suíte de testes automatizados (Sprint 4)
 pytest tests/ -v
 
-# 11. Visualizar o Painel Executivo Interativo (Sprint 4)
+# 12. Visualizar o Painel Executivo Interativo (Sprint 4)
 # Abrir o arquivo reports/executive_dashboard.html em qualquer navegador web
 # OU executar via Streamlit:
 streamlit run app.py
@@ -215,10 +235,10 @@ streamlit run app.py
 - **Você sabe traduzir um problema empresarial em uma pergunta analítica?**  
   *Sim. O problema de evasão foi traduzido em uma tarefa de classificação supervisionada em janela móvel de 30 dias com corte Point-in-Time, vinculada diretamente ao valor esperado do contato de retenção.*
 - **Você domina SQL e Python para investigar dados?**  
-  *Sim. Modelamos 6 tabelas relacionais em SQLite e consultas analíticas em Python (pandas, scikit-learn, numpy) para construir atributos agregados consistentes.*
+  *Sim. Modelamos o ecossistema relacional completo no PostgreSQL com DDL profissional (`sql/01_create_tables.sql`) e consultas analíticas avançadas utilizando Common Table Expressions (CTEs), funções de agregação temporal e extensão pgcrypto para pseudonimização em SQL (`sql/02_prepare_abt_view.sql`), além de pipeline modular em Python (pandas, scikit-learn, numpy).*
 - **Você entende validação de modelos, vazamento de dados e métricas?**  
   *Sim. Eliminamos data leakage através do corte $T_0$, adotamos validação temporal Out-of-Time (OOT) e priorizamos PR-AUC, Recall no Top 10% e Brier Score em detrimento da acurácia desbalanceada.*
 - **Você sabe avaliar custos, benefícios e limitações?**  
   *Sim. Demonstramos matematicamente na ADR-003 que uma ação indiscriminada causa destruição de margem (-22,5% de ROI), enquanto a priorização pelo modelo viabiliza um ROI positivo de +49,2%.*
 - **Você consegue organizar um projeto reproduzível e comunicar resultados a pessoas não técnicas?**  
-  *Sim. O projeto possui cobertura de testes de 100% com pytest, decisões técnicas registradas em ADRs, painel interativo standalone em HTML e relatório executivo detalhado para a diretoria.*
+  *Sim. O projeto possui cobertura de testes de 100% com pytest, orquestração via Docker Compose, decisões técnicas registradas em ADRs, painel interativo standalone em HTML e relatório executivo detalhado para a diretoria.*
